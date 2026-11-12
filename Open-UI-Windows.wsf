@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<job id="KrishnaSaarthi">
+<script language="JScript">
+<![CDATA[
+(function () {
+    var files = new ActiveXObject("Scripting.FileSystemObject");
+    var shell = new ActiveXObject("WScript.Shell");
+    var root = files.GetParentFolderName(WScript.ScriptFullName);
+    var desktop = files.BuildPath(root, "desktop");
+    var executable = files.BuildPath(desktop, "node_modules\\electron\\dist\\electron.exe");
+    var dotenv = files.BuildPath(desktop, "node_modules\\dotenv\\package.json");
+    function quote(value) { return '"' + value + '"'; }
+    if (!files.FileExists(executable) || !files.FileExists(dotenv)) {
+        shell.Popup("Electron executable is missing. Run Repair-Desktop-Windows.cmd on Desktop 1 and wait for the download to finish. Then open this launcher on Desktop 2.", 0, "Krishna Saarthi setup", 48);
+        return;
+    }
+    shell.CurrentDirectory = desktop;
+    try {
+        // Launch the graphical Electron binary directly, without cmd, npm or node.exe.
+        shell.Run(quote(executable) + " " + quote(desktop), 1, false);
+    } catch (error) {
+        shell.Popup("Could not open Krishna Saarthi.\n" + error.message, 0, "Krishna Saarthi", 16);
+    }
+})();
+]]>
+</script>
+</job>

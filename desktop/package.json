@@ -1,0 +1,19 @@
+{
+  "name": "krishna-saarthi-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "install:binary": "node node_modules/electron/install.js",
+    "postinstall": "node node_modules/electron/install.js"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "electron": "45.3.0"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10"
+  }
+}

@@ -1,0 +1,19 @@
+name: krishna-saarthi
+services:
+  assistant:
+    build: .
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8787}:8080"
+    env_file: .env
+    environment:
+      OLLAMA_BASE_URL: ${DOCKER_OLLAMA_BASE_URL:-http://host.docker.internal:11434/v1}
+      HF_HOME: /models
+    volumes:
+      - whisper-cache:/models
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://127.0.0.1:8080/', timeout=4)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+volumes:
+  whisper-cache:

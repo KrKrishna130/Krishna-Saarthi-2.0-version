@@ -1,0 +1,1 @@
+{"name":"krishna-saarthi-ui","private":true,"type":"module","scripts":{"build":"vite build --base=./"},"dependencies":{"react":"18.3.1","react-dom":"18.3.1"},"devDependencies":{"vite":"6.4.1"}}
